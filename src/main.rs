@@ -1,6 +1,10 @@
 use colored::Colorize;
 use inquire::Text;
-use std::process::{Command, Stdio};
+use std::{
+    env,
+    path::Path,
+    process::{Command, Stdio},
+};
 
 mod commands;
 
@@ -20,7 +24,10 @@ fn main() {
     println!("{}", banner.bright_cyan().bold());
 
     loop {
-        let command = Text::new("")
+        let current_dir = env::current_dir().unwrap_or_else(|_| Path::new("C:\\").to_path_buf());
+        let prompt_text = format!("{}> ", current_dir.display()).bright_black().bold();
+
+        let command = Text::new(&prompt_text)
             .with_placeholder("pwd gen 32")
             .prompt()
             .unwrap();
@@ -32,6 +39,9 @@ fn main() {
             Some(&"hash") => commands::hash::handle_hash(&parts),
             Some(&"mac") => commands::mac::handle_mac(),
             Some(&"pwd") => commands::pwd::handle_pwd(&parts),
+            Some(&"cd") => {
+                change_directory(&parts);
+            }
             Some(&"exit") => {
                 println!("{}", "👋 Goodbye!".bright_yellow().bold());
                 break;
@@ -43,6 +53,28 @@ fn main() {
                 "{}",
                 "❓ Unknown command! Use the --help command.".red().bold()
             ),
+        }
+    }
+}
+
+fn change_directory(parts: &[&str]) {
+    match parts.get(1) {
+        Some(&path) => {
+            if let Err(e) = env::set_current_dir(Path::new(path)) {
+                println!(
+                    "{}: {}",
+                    "❌ Failed to change directory".red(),
+                    e.to_string().yellow()
+                );
+            }
+        }
+        None => {
+            println!(
+                "{}",
+                "❌ Please provide a path. Usage: cd <directory>"
+                    .red()
+                    .bold()
+            );
         }
     }
 }
