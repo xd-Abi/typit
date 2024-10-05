@@ -21,7 +21,7 @@ Typit offers the following built-in commands:
 - **🧮 `calc`**: Evaluate mathematical expressions.
 - **🔐 `hash`**: Generate cryptographic hashes for files and strings.
 - **🌐 `mac`**: Display all MAC addresses of the system’s network interfaces.
-- **🔑 `pwd`**: Show the current working directory.
+- **🔑 `pwd`**: Generate secure passwords and copy them to the clipboard.
 - **📁 `cd`**: Change directories within the program.
 - **👋 `exit`**: Exit the Typit interface.
 - **⚙️ Native Commands**: Typit will automatically run any native CLI tool if it does not match one of the custom commands (e.g., `flutter doctor` or `git status`).
