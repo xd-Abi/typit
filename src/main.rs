@@ -27,6 +27,7 @@ fn main() {
         let parts: Vec<&str> = command.split_whitespace().collect();
 
         match parts.get(0) {
+            Some(&"calc") => commands::calc::handle_calc(&parts),
             Some(&"pwd") => commands::pwd::handle_pwd(&parts),
             Some(&"exit") => {
                 println!("{}", "👋 Goodbye!".bright_yellow().bold());
