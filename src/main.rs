@@ -1,6 +1,8 @@
 use colored::Colorize;
 use inquire::Text;
 
+mod commands;
+
 fn main() {
     let banner = r#"
 
@@ -25,6 +27,7 @@ fn main() {
         let parts: Vec<&str> = command.split_whitespace().collect();
 
         match parts.get(0) {
+            Some(&"pwd") => commands::pwd::handle_pwd(&parts),
             Some(&"exit") => {
                 println!("{}", "👋 Goodbye!".bright_yellow().bold());
                 break;
