@@ -22,6 +22,17 @@ fn main() {
             .prompt()
             .unwrap();
 
-        println!("{}", command)
+        let parts: Vec<&str> = command.split_whitespace().collect();
+
+        match parts.get(0) {
+            Some(&"exit") => {
+                println!("{}", "👋 Goodbye!".bright_yellow().bold());
+                break;
+            }
+            _ => println!(
+                "{}",
+                "❓ Unknown command! Use the --help command.".red().bold()
+            ),
+        }
     }
 }
