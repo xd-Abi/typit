@@ -5,3 +5,5 @@ edition = "2021"
 authors = ["Abi"]
 
 [dependencies]
+colored = "2.0"
+inquire = "0.7.5"
