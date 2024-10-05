@@ -28,6 +28,7 @@ fn main() {
 
         match parts.get(0) {
             Some(&"calc") => commands::calc::handle_calc(&parts),
+            Some(&"hash") => commands::hash::handle_hash(&parts),
             Some(&"pwd") => commands::pwd::handle_pwd(&parts),
             Some(&"exit") => {
                 println!("{}", "👋 Goodbye!".bright_yellow().bold());
