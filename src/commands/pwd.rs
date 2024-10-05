@@ -14,9 +14,9 @@ pub fn handle_pwd(parts: &Vec<&str>) {
                 println!(
                     "{} {}",
                     "🔑 Generated Password (copied to clipboard):"
-                        .bright_green()
+                        .white()
                         .bold(),
-                    generated_password
+                    format!("{generated_password}").bright_green().bold()
                 );
             } else {
                 println!(

@@ -25,11 +25,9 @@ pub fn handle_calc(parts: &Vec<&str>) {
                 if ctx.set_contents(result_str.clone()).is_ok() {
                     println!(
                         "{} {} = {}",
-                        "🧮 Calculated Result (copied to clipboard):"
-                            .bright_green()
-                            .bold(),
-                        expression,
-                        result_str.bright_yellow().bold()
+                        "🧮 Calculated Result (copied to clipboard):".white().bold(),
+                        expression.bright_yellow().bold(),
+                        result_str.bright_green().bold()
                     );
                 } else {
                     println!("{}", "❌ Could not copy the result to clipboard.".red());
