@@ -8,3 +8,4 @@ authors = ["Abi"]
 colored = "2.0"
 inquire = "0.7.5"
 rand = "0.8.5"
+clipboard = "0.5"

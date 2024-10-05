@@ -1,3 +1,5 @@
+use clipboard::ClipboardContext;
+use clipboard::ClipboardProvider;
 use colored::Colorize;
 use rand::Rng;
 
@@ -6,9 +8,14 @@ pub fn handle_pwd(parts: &Vec<&str>) {
         (Some(&"gen"), Some(length_str)) => {
             if let Ok(length) = length_str.parse::<usize>() {
                 let generated_password = generate_password(length);
+                let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
+                ctx.set_contents(generated_password.clone()).unwrap();
+
                 println!(
                     "{} {}",
-                    "🔑 Generated Password:".bright_green().bold(),
+                    "🔑 Generated Password (copied to clipboard):"
+                        .bright_green()
+                        .bold(),
                     generated_password
                 );
             } else {
